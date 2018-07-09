@@ -66,10 +66,14 @@ async function listen() {
 
   return server;
 }
+async function websocket(){
+  await require('./src/websocket/index')();
+}
 
 module.exports = (async () => {
   try {
     await establish();
+    await websocket();
     return await listen();
   } catch (err) {
     debug(err);
